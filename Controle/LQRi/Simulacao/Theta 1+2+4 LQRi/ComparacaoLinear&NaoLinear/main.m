@@ -35,10 +35,15 @@ forcasiniciais=[1.7 1.7];
 xini = [thetainitial forcasiniciais theta_dotinitial];
 up0 = forcasiniciais';
 
+
+PesoInt=[0.5 0.5 0.5];             %err_theta1     err_theta2     err_theta4
+PesoTheta=[0.1 1 0.05];            %theta1         theta2         theta4
+PesoTheta_dot=[1.001 0.5 1];   %theta1_dot     theta2_dot     theta4_dot
+
 % Parametros de projeto
-PesoInt=[0.25 0.2 0.5];             %err_theta1     err_theta2     err_theta4
-PesoTheta=[0.01 1 0.05];            %theta1         theta2         theta4
-PesoTheta_dot=[1.001 0.5 0.4901];   %theta1_dot     theta2_dot     theta4_dot
+% PesoInt=[0.25 0.2 0.5];             %err_theta1     err_theta2     err_theta4
+% PesoTheta=[0.01 1 0.05];            %theta1         theta2         theta4
+% PesoTheta_dot=[1.001 0.5 0.4901];   %theta1_dot     theta2_dot     theta4_dot
 
 Qr = diag([PesoInt PesoTheta PesoTheta_dot]);   % size(Qr) = q+n
 Rr = 1*diag([1, 1]);                            % size(Rr) = p
@@ -184,3 +189,14 @@ ylinear=ylinear*rad2deg;
 
 plotdata(pwm,y,u,x,xreferencias*rad2deg,ylinear,ulinear,xlinear,kmax);
 
+
+% Escrevendo txt
+K
+fileID = fopen('Ganho_Estados.txt','w');
+fprintf(fileID,'%5f %5f %5f %5f %5f %5f\n',K');
+fclose(fileID);
+
+Ki
+fileID = fopen('Ganho_Integral.txt','w');
+fprintf(fileID,'%5f %5f %5f\n',Ki');
+fclose(fileID);

@@ -1,9 +1,9 @@
-% Universidade Federal de Uberlândia
-%   Faculdade de Engenharia Mecânica
-%    Curso de Engenharia Mecatrônica 
+% Universidade Federal de Uberlï¿½ndia
+%   Faculdade de Engenharia Mecï¿½nica
+%    Curso de Engenharia Mecatrï¿½nica 
 %   
-%   Retas resultantes da regressão linear do Motor 1
-%   O motor com tampa branca que gira no sentido anti-horario chamado motor 1
+%   Retas resultantes da regressï¿½o linear do Motor 1
+%   O motor com tampa branca que gira no sentido horario chamado motor 1
 %   Aluno: Gabriel Costa e Silva
 % =================================
 
@@ -15,17 +15,21 @@ clc
 rpm_2_rads=((2*pi)/60);
 Kg_2_N=(9.81);
 Ts=0.012;
+filename1='novo2.txt';
+filename2='novo2.txt';
+filename3='novo2.txt';
 
-txtfile = dlmread('M1_E1.txt');
-ForcaPPM1 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','Força por PPM');
+
+txtfile = dlmread(filename1);
+ForcaPPM1 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','Forï¿½a por PPM');
 ForcaPPM1.OutputName = {'Force'};
 ForcaPPM1.OutputUnit = {'Newtons'};
 ForcaPPM1.InputName = {'PPM'};
 ForcaPPM1.InputUnit = {'milliseconds'};
 
 
-txtfile = dlmread('M1_E2.txt');
-ForcaPPM2 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','Força por PPM');
+txtfile = dlmread(filename2);
+ForcaPPM2 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','Forï¿½a por PPM');
 ForcaPPM2.OutputName = {'Force'};
 ForcaPPM2.OutputUnit = {'Newtons'};
 ForcaPPM2.InputName = {'PPM'};
@@ -33,8 +37,8 @@ ForcaPPM2.InputUnit = {'milliseconds'};
 
 
 
-txtfile = dlmread('M1_E3.txt');
-ForcaPPM3 = iddata((txtfile(:,3)*Kg_2_N),txtfile(:,2),Ts,'ExperimentName','Força por PPM');
+txtfile = dlmread(filename3);
+ForcaPPM3 = iddata((txtfile(:,3)*Kg_2_N),txtfile(:,2),Ts,'ExperimentName','Forï¿½a por PPM');
 ForcaPPM3.OutputName = {'Force'};
 ForcaPPM3.OutputUnit = {'Newtons'};
 ForcaPPM3.InputName = {'PPM'};
@@ -111,15 +115,15 @@ dado_final=[dado1;dado2;dado3]
 
 figure
 errorbar([40,45,50,55,60],mean(dado_final),std(dado_final),'*')
-title("Mapeamento Estático do Motor M1 (Rotação Anti-horária)");
+title("Mapeamento Estï¿½tico do Motor M1 (Rotaï¿½ï¿½o Anti-horï¿½ria)");
 xlabel("PPM [%]")
-ylabel("Força [N]")
+ylabel("Forï¿½a [N]")
 hold on
 
 ppm = [40*ones(750,1);45*ones(750,1);50*ones(750,1);55*ones(750,1);60*ones(750,1)];
 f=[dado_final(:,1);dado_final(:,2);dado_final(:,3);dado_final(:,4);dado_final(:,5)];
 
-%%Regressão Linear sobre os dados
+%%Regressï¿½o Linear sobre os dados
 format long
 coefs = polyfit(ppm,f,1);
 ppm1=linspace(40,60,1000);
@@ -133,15 +137,15 @@ print('MotorCCW_grau1','-dpdf','-bestfit')
 
 figure
 errorbar([40,45,50,55,60],mean(dado_final),std(dado_final),'*')
-title("Mapeamento Estático do Motor M1 (Rotação Anti-horária)");
+title("Mapeamento Estï¿½tico do Motor M1 (Rotaï¿½ï¿½o Anti-horï¿½ria)");
 xlabel("PPM [%]")
-ylabel("Força [N]")
+ylabel("Forï¿½a [N]")
 hold on
 
 ppm = [40*ones(750,1);45*ones(750,1);50*ones(750,1);55*ones(750,1);60*ones(750,1)];
 f=[dado_final(:,1);dado_final(:,2);dado_final(:,3);dado_final(:,4);dado_final(:,5)];
 
-%%Regressão Linear sobre os dados
+%%Regressï¿½o Linear sobre os dados
 format long
 coefs = polyfit(ppm,f,2);
 ppm1=linspace(40,60,1000);
