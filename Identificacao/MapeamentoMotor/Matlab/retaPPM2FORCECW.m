@@ -16,9 +16,9 @@ rpm_2_rads=((2*pi)/60);
 Kg_2_N=(9.81);
 Ts=0.012;
 
-filename1='motorpretonovo.txt';
-filename2='motorpretonovo.txt';
-filename3='motorpretonovo.txt';
+filename1='MPRETO_1.txt';
+filename2='MPRETO_2.txt';
+filename3='MPRETO_2.txt';
 
 txtfile = dlmread(filename1);
 ForcaPPM1 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','For�a por PPM');
@@ -108,7 +108,7 @@ end
 
 dado3=[col1(1:250) col2(1:250) col3(1:250) col4(1:250) col5(1:250)];
 
-dado_final=[dado1;dado2;dado3]
+dado_final=[dado1;dado2;dado3];
 
 
 figure

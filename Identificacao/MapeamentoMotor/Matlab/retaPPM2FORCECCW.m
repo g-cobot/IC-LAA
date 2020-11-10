@@ -15,9 +15,9 @@ clc
 rpm_2_rads=((2*pi)/60);
 Kg_2_N=(9.81);
 Ts=0.012;
-filename1='novo2.txt';
-filename2='novo2.txt';
-filename3='novo2.txt';
+filename1='MBRANCO_1.txt';
+filename2='MBRANCO_1.txt';
+filename3='MBRANCO_1.txt';
 
 
 txtfile = dlmread(filename1);
