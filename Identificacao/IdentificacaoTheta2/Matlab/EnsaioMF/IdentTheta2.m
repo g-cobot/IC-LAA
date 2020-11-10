@@ -98,6 +98,8 @@ valorinicial_ens2=mean(ensaio2(1:2));
 valorinicial_ens3=mean(ensaio3(1:2));
 valorinicial_ens4=mean(ensaio4(1:2));
 
+thetainf=[thetainf1 thetainf2 thetainf3 thetainf4]-[valorinicial_ens1 valorinicial_ens2 valorinicial_ens3 valorinicial_ens4];
+
 
 erro_ens1=  ref-valorinicial_ens1;
 erro_ens2=  ref-valorinicial_ens2;

@@ -2,7 +2,7 @@
 
 function [] = plotdata(w,y,u,x,xref,ylin,ulin,xlin,k)
 
-data=readExpData('ensaio1.txt');
+data=readExpData('ensaio2.txt');
 
 figure
 subplot(2,3,1);
@@ -13,17 +13,13 @@ grid on
 hold on
 plot((0:k-1),ylin(1,:)','m');
 
-plot([1:size(data.y,1)],data.y(:,1),'r');
+plot(1:size(data.y,1),data.y(:,1),'r');
 xticks([0:350:1500])
 
 plot((0:k-1),xref(1,:)','k--');
 
 legend('\theta_1','\theta_1_{lin}','\theta_1_{exp]','referencia')
 hold off
-
-
-
-legend('\theta_1','\theta_1_{lin}','referencia')
 
 subplot(2,3,2);
 plot((0:k-1),y(2,:)','b');

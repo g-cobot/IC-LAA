@@ -5,22 +5,22 @@ close all
 
 ensaio1=importdata('ensaio01_m10.txt'); %[theta1,theta2,theta4,dottheta1,dottheta2,dottheta4,forca1,forca2]
 
-theta4 = ensaio1(100:500,3)
-theta4_dot = ensaio1(100:500,6)
+theta4 = ensaio1(100:500,3)*-1;
+theta4_dot = ensaio1(100:500,6)*-1;
 
 Ts=0.02;
 
 figure
 
 subplot(2,1,1);
-plot([0:size(theta4)-1]*Ts,theta4*-1,'Color','[0 0.4470 0.7410]')
+plot([0:size(theta4)-1]*Ts,theta4,'Color','[0 0.4470 0.7410]')
 ylabel('$\theta_4[rad]$','fontsize',14,'interpreter','latex')
 xlabel('$Tempo [s]$','fontsize',14,'interpreter','latex')
 grid on
 hold on
 
 subplot(2,1,2);
-plot([0:size(theta4_dot)-1]*Ts,theta4_dot *-1,'Color','[0 0.4470 0.7410]')
+plot([0:size(theta4_dot)-1]*Ts,theta4_dot,'Color','[0 0.4470 0.7410]')
 ylabel('$\dot{\theta_4}[rad/s]$','fontsize',14,'interpreter','latex')
 xlabel('$Tempo [s]$','fontsize',14,'interpreter','latex')
 grid on
@@ -41,7 +41,7 @@ qsi = sqrt(log(sobresinal).^2)./sqrt(pi^2+(log(sobresinal_ens1)).^2);
 
 %tempo de pico
 
-tp1 = Ts*34;
+tp1 = Ts*53;
 tp=[tp1];
 
 
@@ -49,16 +49,18 @@ wn= pi./(tp* sqrt(1- (qsi.^2)));
 
 % tamanho do erro inicial =  valor de referencia - valor inicial do ensaio 
 % valor inicial do ensaio são a média dos 8 primeiros valores
-ref=-10*pi/180; % -10 graus em rad
+ref=10*pi/180; % -10 graus em rad
 
 valorinicial_ens1=mean(theta4(1:10));
 erro_ens1=  ref-valorinicial_ens1;
+thetainf1=thetainf1-valorinicial_ens1;
+
 Amplitude=[erro_ens1];
 
 K = thetainf1/Amplitude;
 
 subplot(2,1,1);
-H = tf(K(1)*(wn(1)^2),[1, 2*qsi(1)*wn(1), wn(1)^2]);
+H = tf(K(1)*(wn(1)^2),[1, 2*qsi(1)*wn(1), wn(1)^2],'inputdelay',2.2);
 %opt = stepDataOptions('InputOffset',valorinicial_ens1,'StepAmplitude',Amplitude(1));
 %step(H,opt,9)
 [y,t]=step(H,9);
@@ -66,6 +68,22 @@ y=y.*Amplitude(1)+valorinicial_ens1;
 plot(t,y,'b');
 title('')
 legend('Res. Exp','Res. Ident.')
+
+subplot(2,1,2);
+tdiff=t(1:end-1);
+ydot=diff(y)/Ts;
+plot(tdiff,ydot,'b');
+title('')
+legend('Res. Exp','Res. Ident.')
+
+%Calculo dos parâmetros
+L1=0.215;
+L2=0.217;
+J4=(L1+L2)/(K.*(wn.^2));
+b4=J4.*2.*qsi.*wn;
+c4=J4.*(wn.^2);
+parametros_theta4=[J4 b4 c4]
+
 
 %%sgtitle('Resultados Experimentais','fontsize',14,'interpreter','latex')
 

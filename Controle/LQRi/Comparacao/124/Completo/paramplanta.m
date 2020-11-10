@@ -6,14 +6,21 @@ function [A,B,C,D,T] = paramplanta()
 %Parametros de Theta4
 %c/Ix4 = 63.76;
 %b/Ix4 = 9.59;
-Ix4 = 0.01;
-b4  = 0.0959;
-c4  = 0.6376;
+% Ix4 = 0.01;
+% b4  = 0.0959;
+% c4  = 0.6376;
+Ix4 =  0.0225;
+b4  =  0.1135;
+c4  =  0.3408;
 
 %Parametros de Theta2
+% Iy2 = 0.306954;
+% b2  = 1.598815;
+% l2  = 0.60; % m
 Iy2 = 0.306954;
 b2  = 1.598815;
 l2  = 0.60; % m
+
 
 %Parametros de Theta1
 Iz1 = 0.584807507;
