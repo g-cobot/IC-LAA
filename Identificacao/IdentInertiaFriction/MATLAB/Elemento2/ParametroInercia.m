@@ -1,7 +1,7 @@
 %   Universidade Federal de Uberlândia
 %   Faculdade de Engenharia Mecânica
 
-%   Identificação da Inercia e atrito: den_2 e fs2 
+%   Identificação da Inercia e atrito: I_2 e fs2 
 %   Aluno: Gabriel Costa e Silva
 % =================================
 
@@ -105,12 +105,12 @@ par_teoricos=[Iy2+Iy3+Iyp+l_2*l_2*(m_3+m_4+m_p)+...
 
 Kp=[4,4,4,4];
 
-den3= 2*Kp*l_2./(K.*wn.^2)
-fs2=1./(2.*xi.*wn.*den3)
-den3optional=(2*Kp*l_2)./wn.^2
+I2= 2*Kp*l_2./(K.*wn.^2)
+fs2=1./(2.*xi.*wn.*I2)
+I2optional=(2*Kp*l_2)./wn.^2
 
-par_finais=[den3; fs2];
-par_exp=[den3;den3optional]
+par_finais=[I2; fs2];
+par_exp=[I2;I2optional]
 par_teoricos=par_teoricos.*ones(2,1)
 for i=1:4
     erro_texp(:,i)=(par_exp(:,i)-par_teoricos)./par_exp(:,i); %em porcentagem
