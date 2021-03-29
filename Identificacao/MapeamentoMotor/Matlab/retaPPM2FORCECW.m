@@ -1,10 +1,10 @@
 % Universidade Federal de Uberl�ndia
-%   Faculdade de Engenharia Mec�nica
-%    Curso de Engenharia Mecatr�nica 
+% Faculdade de Engenharia Mecanica
+% Curso de Engenharia Mecatronica 
 %   
-%   Retas resultantes da regress�o linear do Motor 2
-%   O motor com tampa preta que gira no sentido anti-horario chamado motor 2
-%   Aluno: Gabriel Costa e Silva
+% Retas resultantes da regressao linear do Motor 2
+% O motor com tampa preta que gira no sentido anti-horario chamado motor 2
+% Aluno: Gabriel Costa e Silva
 % =================================
 
 close all
@@ -21,22 +21,21 @@ filename2='MPRETO_2.txt';
 filename3='MPRETO_2.txt';
 
 txtfile = dlmread(filename1);
-ForcaPPM1 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','For�a por PPM');
+ForcaPPM1 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','Forca por PPM');
 ForcaPPM1.OutputName = {'Force'};
 ForcaPPM1.OutputUnit = {'Newtons'};
 ForcaPPM1.InputName = {'PPM'};
 ForcaPPM1.InputUnit = {'milliseconds'};
 
-
 txtfile = dlmread(filename2);
-ForcaPPM2 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','For�a por PPM');
+ForcaPPM2 = iddata((txtfile(1:4874,3)*Kg_2_N),txtfile(1:4874,2),Ts,'ExperimentName','Forca por PPM');
 ForcaPPM2.OutputName = {'Force'};
 ForcaPPM2.OutputUnit = {'Newtons'};
 ForcaPPM2.InputName = {'PPM'};
 ForcaPPM2.InputUnit = {'milliseconds'};
 
 txtfile = dlmread(filename3);
-ForcaPPM3 = iddata((txtfile(:,3)*Kg_2_N),txtfile(:,2),Ts,'ExperimentName','For�a por PPM');
+ForcaPPM3 = iddata((txtfile(:,3)*Kg_2_N),txtfile(:,2),Ts,'ExperimentName','Forca por PPM');
 ForcaPPM3.OutputName = {'Force'};
 ForcaPPM3.OutputUnit = {'Newtons'};
 ForcaPPM3.InputName = {'PPM'};
@@ -113,9 +112,9 @@ dado_final=[dado1;dado2;dado3];
 
 figure
 errorbar([40,45,50,55,60],mean(dado_final),std(dado_final),'*')
-title("Mapeamento Est�tico do Motor M2 (Rota��o Hor�ria)");
+title("Mapeamento Estatico do Motor M2 (Rotacao Horaria)");
 xlabel("PPM [%]")
-ylabel("For�a [N]")
+ylabel("Forca [N]")
 hold on
 
 ppm = [40*ones(750,1);45*ones(750,1);50*ones(750,1);55*ones(750,1);60*ones(750,1)];
@@ -137,9 +136,9 @@ print('MotorCW_grau1','-dpdf','-bestfit')
 
 figure
 errorbar([40,45,50,55,60],mean(dado_final),std(dado_final),'*')
-title("Mapeamento Est�tico do Motor M2 (Rota��o Hor�ria)");
+title("Mapeamento Estatico do Motor M2 (Rotacao Horaria)");
 xlabel("PPM [%]")
-ylabel("For�a [N]")
+ylabel("Forca [N]")
 hold on
 coefs = polyfit(ppm,f,2);
 ppm1=linspace(40,60,1000);

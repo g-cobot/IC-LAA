@@ -56,13 +56,13 @@ plot(0.02*[0:size(yfit2(:,1))-1],yfit2(:,1),'g--')
 xlabel('Time [s]')
 ylabel('Rad')
 legend('Exp.Data','Mod.GA','Mod.Ident')
-title('Ensaio 0')
+title('Ensaio A')
 
 subplot(2,1,2)
 plot(0.02*[0:ensaio_size-1],roll_dot_0(1:ensaio_size),'k',0.02*[1:size(yfit(:,2))],yfit(:,2),'r--')
 xlabel('Time [s]')
 ylabel('Rad/s')
-legend('Exp.Data','Mod.Indent')
+legend('Exp. Data','Mod.Indent')
 
 %Valores teóricos
 g=9.81; %[m/s^2]
@@ -74,8 +74,8 @@ Ixp=0.0140;%[Kgm^2]
 b=0.2132;   %braco bicoptero
 par_teoricos=[Ix4+Ixp+l_4*l_4*m_p;g*l_4*m_p; Ix4+Ixp+l_4*l_4*m_p; g*l_4*m_p];
 par_teoricos=par_teoricos.*ones(4,2);
-Kp=0.4;
-Kd=0.5;
+Kp=0.8;
+Kd=0.2;
 for i=1:2
     e1=Out(i,1);
     e2=Out(i,2);
@@ -93,3 +93,21 @@ for i=1:2
     par_exp=[I4; gl4mp; I4opt; gl4mpopt];
     erro_texp(:,i)=(par_exp-par_teoricos(:,i))./par_exp; %em porcentagem
 end
+[erro_texp(2,:);erro_texp(4,:)]
+par_finais
+
+fs=30
+figure
+plot(0.02*[0:ensaio_size-3],roll_0(1:ensaio_size-2))
+hold on
+a = get(gca,'XTickLabel');
+set(gca,'XTickLabel',a,'FontName','Times','fontsize',fs*0.6)
+ax.TickLabelInterpreter='latex';
+plot(0.02*[0:size(yfit2(:,1))-1],yfit2(:,1),'r--')
+ylim([0 max(yfit2(:,1))*1.2])
+grid on
+xlabel('$Tempo\hspace{0.5em}[s]$','fontsize',fs,'interpreter','latex')
+ylabel('$\theta_4\hspace{0.5em}[rad]$','fontsize',fs,'interpreter','latex')
+legend('$Resultado\hspace{0.5em}Experimental$','$Modelo\hspace{0.5em}Identificado$','fontsize',fs*0.6,'interpreter','latex')
+%title('$Ensaio\hspace{0.5em}A$','fontsize',20,'interpreter','latex')
+
