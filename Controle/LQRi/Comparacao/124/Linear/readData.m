@@ -1,3 +1,4 @@
+%sem mecanismo de vetorização
 clear all 
 close all
 clc
@@ -6,11 +7,11 @@ Ts=0.02;
 deg2rad=pi/180;
 
 txtfile = dlmread('ensaio1.txt');
-data = iddata(txtfile(:,1:6),txtfile(:,7:10),Ts,'ExperimentName','Ensaio Controle LQRi 124 com tilt');
+data = iddata(txtfile(:,1:6),txtfile(:,7:8),Ts,'ExperimentName','Ensaio Controle LQRi 124 com tilt');
 data.OutputName = {'Theta1','Theta2','Theta4','Theta1_dot','Theta2_dot','Theta4_dot'};
 data.OutputUnit = {'rad','rad','rad','rad/s','rad/s','rad/s',};
-data.InputName = {'F1','F2','alpha1','alpha2'};
-data.InputUnit = {'N','N','rad','rad'};
+data.InputName = {'F1','F2'};
+data.InputUnit = {'N','N'};
 
 
 
@@ -67,7 +68,7 @@ grid on
 
 figure
 
-subplot(2,2,1);
+subplot(1,2,1);
 
 plot([1:size(data.u,1)],data.u(:,1),'k');
 xticks([0:250:1500])
@@ -82,7 +83,7 @@ plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'r--');
 legend('F_1','sat. inf','sat. sup')
 
 
-subplot(2,2,2);
+subplot(1,2,2);
 
 plot([1:size(data.u,1)],data.u(:,2),'k');
 xticks([0:250:1500])
@@ -94,31 +95,3 @@ hold on
 plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'b--');
 plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'r--');
 legend('F_2','sat. inf','sat. sup')
-
-
-subplot(2,2,3);
-
-plot([0:size(data.u,1)-1],data.u(:,3),'k');
-xticks([0:250:1500])
-xlabel('k');
-ylabel('$\alpha_1 [rad]$ ','Interpreter','latex');
-grid on
-
-hold on
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*35*deg2rad,'b--');
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*0*deg2rad,'r--');
-legend('alpha_1','sat. inf','sat. sup')
-
-subplot(2,2,4);
-
-plot([0:size(data.u,1)-1],data.u(:,4),'k');
-xticks([0:250:1500])
-xlabel('k');
-ylabel('$\alpha_2 [rad]$ ','Interpreter','latex');
-grid on
-
-hold on
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*35*deg2rad,'b--');
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*0*deg2rad,'r--');
-legend('alpha_2','sat. inf','sat. sup')
-

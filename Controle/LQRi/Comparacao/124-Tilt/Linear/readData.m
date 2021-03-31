@@ -1,3 +1,4 @@
+%com mecanismo de vetorização
 clear all 
 close all
 clc

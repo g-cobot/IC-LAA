@@ -112,16 +112,26 @@ dado_final=[dado1;dado2;dado3];
 ppm = [1400*ones(750,1);1450*ones(750,1);1500*ones(750,1);1550*ones(750,1);1600*ones(750,1)];
 f=[dado_final(:,1);dado_final(:,2);dado_final(:,3);dado_final(:,4);dado_final(:,5)];
 
+[coefs1,S1] = polyfit(ppm,f,1);
+x=linspace(1400,1600,1000);
+y1=polyval(coefs1,x);
+plot(x,y1);
+r1=(S1.normr/norm(y1 - mean(y1)))^2;
+hold on
+format long
+[coefs,S] = polyfit(ppm,f,2);
+y2=polyval(coefs,x);
+plot(x,y2);
+r2=(S.normr/norm(y2 - mean(y2)))^2;
+
+
 figure
 errorbar([1400,1450,1500,1550,1600],mean(dado_final),std(dado_final),'*')
 title("Mapeamento Estatico do Motor M2 (Rotacao Horaria)");
 xlabel("PPM [ms]")
 ylabel("Forca [N]")
 hold on
-coefs = polyfit(ppm,f,2);
-ppm1=linspace(1400,1600,1000);
-plot(ppm1,polyval(coefs,ppm1));
 
-%set(leg1,'Interpreter','latex')
-%yticks([1:0.25:3.5])
+plot(x,y1);
+%plot(x,y2);
 grid on

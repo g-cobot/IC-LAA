@@ -21,7 +21,7 @@ Ts=0.025;
 
 ppm2ref=polyfit([1650 2350],[33*deg2rad 0],1);
 
-ini=[800 800 201 740 805 805]-10;
+ini=[809 809 201 740 805 805]-10;
 tam=130;
 fim=ini+tam;
 offset=[2.17 86.30];
@@ -99,8 +99,8 @@ data.InputName = {'Alfaref'};
 data.InputUnit = {'rad'};
 data6=data;
 
-save('AlfaDin1.mat','data1');
-save('AlfaDin2.mat','data2');
+%save('AlfaDin1.mat','data1');
+%save('AlfaDin2.mat','data2');
 % save('AlfaDin3.mat','data3');
 %save('AlfaDin4.mat','data4');
 %save('AlfaDin5.mat','data5');

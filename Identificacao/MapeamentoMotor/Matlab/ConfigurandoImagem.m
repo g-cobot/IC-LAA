@@ -1,9 +1,10 @@
 %Configurando a imagem
 %Abra a imagem depois rode o seguinte comando
 figura=gcf
-i=2
-Yinicio=[-1.2 1.1]
-Yfim=[1.2 1.1]
+i=1
+Yinicio=[-1.2 -1.0]
+Yfim=[1.2 1.0]
+text=['$F_1';'$F_2'];
 %Arrumando a Legenda
 %ligando a legenda
 legend('Curva aproximada','Resultado experimental')
@@ -27,6 +28,6 @@ figura.Children(2).XLabel.Interpreter='latex'
 figura.Children(2).YGrid=1
 figura.Children(2).YTick= linspace(Yinicio(i),Yfim(i),5)
 figura.Children(2).YLim= [Yinicio(i) Yfim(i)]
-figura.Children(2).YLabel.String='$\Delta$F\hspace{0.5em}[N]'
+figura.Children(2).YLabel.String=strcat(text(i,:),'\hspace{0.5em}[N]$')
 figura.Children(2).YLabel.Interpreter='latex'
 figura.Children(2).Children(2).Color ='red'

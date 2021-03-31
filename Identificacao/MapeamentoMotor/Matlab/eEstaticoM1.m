@@ -112,25 +112,30 @@ dado3=[col1(1:250) col2(1:250) col3(1:250) col4(1:250) col5(1:250)]-mean(col3(1:
 
 dado_final=[dado1;dado2;dado3]
 
-
-figure
-errorbar([1400,1450,1500,1550,1600],mean(dado_final),std(dado_final),'*')
-%title("Mapeamento Estï¿½tico do Motor M1 (Rotaï¿½ï¿½o Anti-horï¿½ria)");
-xlabel("PPM [ms]")
-ylabel("Força [N]")
-hold on
-
 ppm = [1400*ones(750,1);1450*ones(750,1);1500*ones(750,1);1550*ones(750,1);1600*ones(750,1)];
 f=[dado_final(:,1);dado_final(:,2);dado_final(:,3);dado_final(:,4);dado_final(:,5)];
 
-%%Regressï¿½o Linear sobre os dados
-format long
-coefs = polyfit(ppm,f,2);
-ppm1=linspace(1400,1600,1000);
-plot(ppm1,polyval(coefs,ppm1));
+x=linspace(1400,1600,1000);
+[coefs1,S1] = polyfit(ppm,f,1);
+y1=polyval(coefs1,x);
+r1=(S1.normr/norm(y1 - mean(y1)))^2;
 
-%leg1=legend('Dados experimentais','Curva Ajustada - $F[PPM]=0.000459*PPM^2+0.036316*PPM-0.944062$')
-%set(leg1,'Interpreter','latex')
-%yticks([1:0.25:3.5])
+format long
+[coefs,S2] = polyfit(ppm,f,2);
+ppm1=linspace(1400,1600,1000);
+x=linspace(1400,1600,1000);
+y2=polyval(coefs,x);
+r2=(S2.normr/norm(y2 - mean(y2)))^2;
+
+figure
+plot(x,y1);
+hold on
+plot(x,y2);
+
+figure
+errorbar([1400,1450,1500,1550,1600],mean(dado_final),std(dado_final),'*')
+xlabel("PPM [ms]")
+ylabel("Força [N]")
+hold on
+plot(x,y1);
 grid on
-%print('MotorCCW_grau2','-dpdf','-bestfit')
