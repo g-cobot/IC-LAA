@@ -78,9 +78,9 @@ grid on
 
 
 hold on
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'b--');
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'r--');
-legend('F_1','sat. inf','sat. sup')
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'k--');
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'k--');
+%legend('F_1','sat. inf','sat. sup')
 
 
 subplot(2,2,2);
@@ -92,9 +92,9 @@ ylabel('$F_2 [N]$ ','Interpreter','latex');
 grid on
 
 hold on
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'b--');
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'r--');
-legend('F_2','sat. inf','sat. sup')
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'k--');
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'k--');
+%legend('F_2','sat. inf','sat. sup')
 
 
 subplot(2,2,3);
@@ -106,9 +106,9 @@ ylabel('$\alpha_1 [rad]$ ','Interpreter','latex');
 grid on
 
 hold on
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*35*deg2rad,'b--');
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*0*deg2rad,'r--');
-legend('alpha_1','sat. inf','sat. sup')
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*35*deg2rad,'k--');
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*0*deg2rad,'k--');
+%legend('alpha_1','sat. inf','sat. sup')
 
 subplot(2,2,4);
 
@@ -119,7 +119,7 @@ ylabel('$\alpha_2 [rad]$ ','Interpreter','latex');
 grid on
 
 hold on
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*35*deg2rad,'b--');
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*0*deg2rad,'r--');
-legend('alpha_2','sat. inf','sat. sup')
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*35*deg2rad,'k--');
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*0*deg2rad,'k--');
+%legend('alpha_2','sat. inf','sat. sup')
 

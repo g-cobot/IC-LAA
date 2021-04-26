@@ -49,7 +49,7 @@ PesoTheta_dot=[1.001 0.5 0.4901];   %theta1_dot     theta2_dot     theta4_dot
 
 % Parametros de projeto
 Qr = diag([PesoInt, PesoTheta, PesoTheta_dot]); % size(Qr) = q+n
-Rr = 1.0*diag([1, 1]);    % size(Rr) = p
+Rr = 1.0*diag([1.0001, 1.0001]);    % size(Rr) = p
 Td = 0.15;          % (s) atraso de transporte;
 
 wLim = [60, 40];   % limitantes em PPM

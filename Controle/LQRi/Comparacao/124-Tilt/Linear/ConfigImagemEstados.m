@@ -5,30 +5,30 @@
 figura=gcf
 
 %Estado posicoes
-ndivyP=[5; 5; 5];
+ndivyP=[5; 6; 6];
 ndivxP=[5; 5; 5];
 
-YiniP=[-0.3;0;-0.4];
-YfimP=[0.3;0.5;0.1];
+YiniP=[-0.1;-0.4;-0.4];
+YfimP=[0.1;0.1;0.1];
 
 XiniP=[0;0;0];
-XfimP=[1500;1500;1500];
+XfimP=[1400;1400;1400];
 
 %Estado Velocidades
-ndivyV=[4; 4; 4];
-ndivxV=[6; 5; 5];
-YiniV=[-0.8;-0.2;-0.4];
-YfimV=[0.8;0.4;0.3];
+ndivyV=[5; 5; 6];
+ndivxV=[5; 5; 5];
+YiniV=[-0.3;-0.1;-0.4];
+YfimV=[0.3;0.9;0.1];
 
 XiniV=[0;0;0];
-XfimV=[1500;1500;1500];
+XfimV=[1400;1400;1400];
 
-textP=['$\theta_1';'$\theta_2';'$\theta_4'];
-textV=['$\dot{\theta}_1';'$\dot{\theta}_2';'$\dot{\theta}_4'];
+textP=['$\theta_4';'$\theta_2';'$\theta_1'];
+textV=['$\dot{\theta}_4';'$\dot{\theta}_2';'$\dot{\theta}_1'];
 textU=['$F_1';'$F_2'];
 
 %Tamanho da fonte
-fs=14.25;
+fs=18.00;
 
 for i=1:6
     figura.Children(i).FontSize=fs
@@ -64,5 +64,5 @@ for i=1:3
 end
 
 for i=1:3:4
-    figura.Children(i).XLabel.String='Num. Amostra'
+    figura.Children(i).XLabel.String='$k$'
 end

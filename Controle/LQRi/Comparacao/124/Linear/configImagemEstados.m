@@ -5,23 +5,23 @@
 figura=gcf
 
 %Estado posicoes
-ndivyP=[6; 6; 6];
-ndivxP=[6; 6; 6];
+ndivyP=[5; 6; 6];
+ndivxP=[5; 5; 5];
 
-YiniP=[-0.25;0;-0.4];
-YfimP=[0.25;0.5;0.1];
+YiniP=[-0.3;-0.4;-0.5];
+YfimP=[0.3;0.1;0.1];
 
 XiniP=[0;0;0];
-XfimP=[1500;1500;1500];
+XfimP=[1400;1400;1400];
 
 %Estado Velocidades
-ndivyV=[5; 4; 5];
-ndivxV=[6; 6; 6];
-YiniV=[-0.8;-0.2;-0.4];
-YfimV=[0.8;0.4;0.4];
+ndivyV=[5; 4; 4];
+ndivxV=[5; 5; 5];
+YiniV=[-0.7;-0.2;-0.4];
+YfimV=[0.7;1.3;0.2];
 
 XiniV=[0;0;0];
-XfimV=[1500;1500;1500];
+XfimV=[1400;1400;1400];
 
 textP=['$\theta_4';'$\theta_2';'$\theta_1'];
 textV=['$\dot{\theta}_4';'$\dot{\theta}_2';'$\dot{\theta}_1'];
@@ -64,5 +64,5 @@ for i=1:3
 end
 
 for i=1:3:4
-    figura.Children(i).XLabel.String='Num. Amostra'
+    figura.Children(i).XLabel.String='$k$'
 end

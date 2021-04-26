@@ -101,10 +101,10 @@ hold on
 plot([0:size(data.u,1)-1],data.u(:,2),'m');
 xticks([0:250:1500])
 
-plot((0:k-1),ones(k)*1.3,'b--');
+plot((0:k-1),ones(k)*1.3,'k--');
 plot((0:k-1),ones(k)*2.9,'k--');
 
-legend('F_1','F_1_{exp}','sat. inf','sat. sup')
+%legend('F_1','F_1_{exp}','sat. inf','sat. sup')
 hold off
 
 subplot(2,1,2);
@@ -117,10 +117,10 @@ hold on
 plot([0:size(data.u,1)-1],data.u(:,2),'m');
 xticks([0:250:1500])
 
-plot((0:k-1),ones(k)*1.3,'b--');
+plot((0:k-1),ones(k)*1.3,'k--');
 plot((0:k-1),ones(k)*2.9,'k--');
 
-legend('F_2','F_2_{exp}','sat. inf','sat. sup')
+%legend('F_2','F_2_{exp}','sat. inf','sat. sup')
 hold off
 end
 

@@ -78,9 +78,9 @@ grid on
 
 
 hold on
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'b--');
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'r--');
-legend('F_1','sat. inf','sat. sup')
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'k--');
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'k--');
+%legend('F_1','sat. inf','sat. sup')
 
 
 subplot(1,2,2);
@@ -92,6 +92,6 @@ ylabel('$F_2 [N]$ ','Interpreter','latex');
 grid on
 
 hold on
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'b--');
-plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'r--');
-legend('F_2','sat. inf','sat. sup')
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*2.9,'k--');
+%plot((0:size(data.u,1)-1),ones(size(data.u,1))*1.3,'k--');
+%legend('F_2','sat. inf','sat. sup')

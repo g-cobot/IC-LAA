@@ -22,8 +22,11 @@ Ts=0.025;
 ppm2ref=polyfit([1650 2350],[33*deg2rad 0],1);
 
 ini=[809 809 201 740 805 805]-10;
+ini2=[810 810]-10;
+
 tam=130;
 fim=ini+tam;
+fim2=ini2+tam;
 offset=[2.17 86.30];
 filename1=['dado2_35porcento.txt'; 'dado2_14porcento.txt'];
 filename2=['ensaio_din_tilt2_01.txt';'ensaio_din_tilt2_02.txt';'ensaio_din_tilt2_03.txt'];
@@ -39,6 +42,17 @@ data.InputName = {'Alfaref'};
 data.InputUnit = {'rad'};
 data1=data;
 
+
+txtfile = dlmread('dado2_35porcento.txt');
+name=strcat('Ensaio dinamico ',int2str(i));
+data = iddata(deg2rad*(txtfile(ini2(i):fim2(i),4)-offset(1)),txtfile(ini2(i):fim2(i),2),Ts,'Experimento 1 Final',name);
+data.y=movmean(data.y,5)
+data.OutputName = {'Angle'};
+data.OutputUnit = {'rad'};
+data.InputName = {'PPM'};
+data.InputUnit = {'ms'};
+data3=data;
+
 i=i+1;
 
 txtfile = dlmread('dado2_14porcento.txt');
@@ -51,53 +65,63 @@ data.InputName = {'Alfaref'};
 data.InputUnit = {'rad'};
 data2=data;
 
-i=i+1;
-
 txtfile = dlmread('dado2_14porcento.txt');
 name=strcat('Ensaio dinamico ',int2str(i));
-data = iddata(deg2rad*(txtfile(ini(i):fim(i),4)-offset(1)),polyval(ppm2ref,txtfile(ini(i):fim(i),2)),Ts,'ExperimentName',name);
+data = iddata(deg2rad*(txtfile(ini2(i):fim2(i),4)-offset(1)),txtfile(ini2(i):fim2(i),2),Ts,'Experimento 2 Final',name);
 data.y=movmean(data.y,5)
 data.OutputName = {'Angle'};
 data.OutputUnit = {'rad'};
-data.InputName = {'Alfaref'};
-data.InputUnit = {'rad'};
-data3=data;
-
-i=i+1;
-
-txtfile = dlmread('ensaio_din_tilt2_01.txt');
-name=strcat('Ensaio dinamico ',int2str(i));
-data = iddata(deg2rad*(txtfile(ini(i):fim(i),4)-offset(2)),polyval(ppm2ref,txtfile(ini(i):fim(i),2)),Ts,'ExperimentName',name);
-data.y=movmean(data.y,10)
-data.OutputName = {'Angle'};
-data.OutputUnit = {'deg'};
-data.InputName = {'Alfaref'};
-data.InputUnit = {'rad'};
+data.InputName = {'PPM'};
+data.InputUnit = {'ms'};
 data4=data;
 
 i=i+1;
 
-txtfile = dlmread('ensaio_din_tilt2_02.txt');
-name=strcat('Ensaio dinamico ',int2str(i));
-data = iddata(deg2rad*(txtfile(ini(i):fim(i),4)-offset(2)),polyval(ppm2ref,txtfile(ini(i):fim(i),2)),Ts,'ExperimentName',name);
-data.y=movmean(data.y,10)
-data.OutputName = {'Angle'};
-data.OutputUnit = {'rad'};
-data.InputName = {'Alfaref'};
-data.InputUnit = {'rad'};
-data5=data;
-
-i=i+1;
-
-txtfile = dlmread('ensaio_din_tilt2_03.txt');
-name=strcat('Ensaio dinamico ',int2str(i));
-data = iddata(deg2rad*(txtfile(ini(i):fim(i),4)-offset(2)),polyval(ppm2ref,txtfile(ini(i):fim(i),2)),Ts,'ExperimentName',name);
-data.y=movmean(data.y,10)
-data.OutputName = {'Angle'};
-data.OutputUnit = {'rad'};
-data.InputName = {'Alfaref'};
-data.InputUnit = {'rad'};
-data6=data;
+% txtfile = dlmread('dado2_14porcento.txt');
+% name=strcat('Ensaio dinamico ',int2str(i));
+% data = iddata(deg2rad*(txtfile(ini(i):fim(i),4)-offset(1)),polyval(ppm2ref,txtfile(ini(i):fim(i),2)),Ts,'ExperimentName',name);
+% data.y=movmean(data.y,5)
+% data.OutputName = {'Angle'};
+% data.OutputUnit = {'rad'};
+% data.InputName = {'Alfaref'};
+% data.InputUnit = {'rad'};
+% data3=data;
+% 
+% i=i+1;
+% 
+% txtfile = dlmread('ensaio_din_tilt2_01.txt');
+% name=strcat('Ensaio dinamico ',int2str(i));
+% data = iddata(deg2rad*(txtfile(ini(i):fim(i),4)-offset(2)),polyval(ppm2ref,txtfile(ini(i):fim(i),2)),Ts,'ExperimentName',name);
+% data.y=movmean(data.y,10)
+% data.OutputName = {'Angle'};
+% data.OutputUnit = {'deg'};
+% data.InputName = {'Alfaref'};
+% data.InputUnit = {'rad'};
+% data4=data;
+% 
+% i=i+1;
+% 
+% txtfile = dlmread('ensaio_din_tilt2_02.txt');
+% name=strcat('Ensaio dinamico ',int2str(i));
+% data = iddata(deg2rad*(txtfile(ini(i):fim(i),4)-offset(2)),polyval(ppm2ref,txtfile(ini(i):fim(i),2)),Ts,'ExperimentName',name);
+% data.y=movmean(data.y,10)
+% data.OutputName = {'Angle'};
+% data.OutputUnit = {'rad'};
+% data.InputName = {'Alfaref'};
+% data.InputUnit = {'rad'};
+% data5=data;
+% 
+% i=i+1;
+% 
+% txtfile = dlmread('ensaio_din_tilt2_03.txt');
+% name=strcat('Ensaio dinamico ',int2str(i));
+% data = iddata(deg2rad*(txtfile(ini(i):fim(i),4)-offset(2)),polyval(ppm2ref,txtfile(ini(i):fim(i),2)),Ts,'ExperimentName',name);
+% data.y=movmean(data.y,10)
+% data.OutputName = {'Angle'};
+% data.OutputUnit = {'rad'};
+% data.InputName = {'Alfaref'};
+% data.InputUnit = {'rad'};
+% data6=data;
 
 %save('AlfaDin1.mat','data1');
 %save('AlfaDin2.mat','data2');
@@ -110,6 +134,8 @@ figure
 plot(data1.y)
 hold on
 plot(data2.y)
+
+
 %plot(data3.y)
 %plot(data4.y)
 %plot(data5.y)
@@ -127,3 +153,15 @@ plot(data2.u)
 %plot(data6.u)
 ylabel('$Alfaref[rad]$','interpreter','latex');
 xlabel('$N amostra$','interpreter','latex');
+
+
+figure
+plot(data3.y)
+hold on
+plot(data4.y)
+
+
+figure
+plot(data3.u)
+hold on
+plot(data4.u)

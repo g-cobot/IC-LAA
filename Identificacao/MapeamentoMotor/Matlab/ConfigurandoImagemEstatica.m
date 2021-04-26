@@ -35,7 +35,7 @@ figura.Children(2).XAxis.Exponent=3
 % end
 % figura.Children(2).XTickLabel=xticklabel
 %figura.Children(2).XLim= [Xini(i) Xfim(i)]
-figura.Children(2).XLabel.String='PPM\hspace{0.5em}[ms]'
+figura.Children(2).XLabel.String='$PPM_F \hspace{0.5em}[ms]$'
 figura.Children(2).XLabel.Interpreter='latex'
 %Arrumando o eixo Y
 figura.Children(2).YGrid=1

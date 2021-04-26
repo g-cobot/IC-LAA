@@ -5,29 +5,27 @@
 figura=gcf
 
 %Comando
-ndivy=[5; 5];
-ndivx=[6; 6];
-Yini=[1.2;1.2];
-Yfim=[3;3];
+ndivy=[6; 6];
+ndivx=[5; 5];
+Yini=[1.3;1.3];
+Yfim=[2.3;2.3];
 
 Xini=[0;0];
-Xfim=[1500;1500];
+Xfim=[28;28];
 
-textU=['$F_1';'$F_2'];
+textU=['$\overline{F_2}';'$\overline{F_1}';];
 
 %Tamanho da fonte
 fs=18.00;
 
 for i=1:2
     figura.Children(i).FontSize=fs
-    %Arrumando a Legenda
-    %ligando a legenda
-    legend('Resultado experimental','Modelo ajustado')
-legend('Interpreter','latex')
-legend('location','northeast')
     %Arrumando Title Labels
     figura.Children(i).Title.String=''
     figura.Children(i).Title.Interpreter='latex'
+end
+
+for i=1:2
     %Arrumando tick interpreter
     figura.Children(i).TickLabelInterpreter='latex'
     %Arrumando o eixo X
@@ -37,17 +35,11 @@ legend('location','northeast')
     %Arrumando o eixo Y
     figura.Children(i).YGrid=1
     figura.Children(i).YLabel.Interpreter='latex'
-    figura.Children(i).Children.Color ='black'
-end
-
-for i=1:2
+    figura.Children(i).Children(1,:).Color ='black'
     figura.Children(i).YTick= linspace(Yini(i),Yfim(i),ndivy(i))
     figura.Children(i).YLim= [Yini(i) Yfim(i)]
     figura.Children(i).XTick= linspace(Xini(i),Xfim(i),ndivx(i))
     figura.Children(i).XLim= [Xini(i) Xfim(i)]
-    figura.Children(i).YLabel.String=strcat(textU(i,:),'\hspace{0.5em}[N]$')
-end
-
-for i=1:2
-    figura.Children(i).XLabel.String='Num. Amostra'
+    figura.Children(i).YLabel.String=strcat(textU(i,:),'\hspace{0.5em}$[N]')
+    figura.Children(i).XLabel.String='Tempo [s]';
 end
