@@ -31,14 +31,14 @@
  param2=[s2 w2 u2 v2 t2 y2 x2]*1000;
  
  % Definição dos Angulos Limites do Servo Motor [theta_min,theta_max] (Atuador do mecanismo Tilt)
- theta_max= pi; % em radianos pi[rad] = 180 [degrees]
+ theta_max=2.0944;% pi/4; % em radianos pi[rad] = 180 [degrees]
  theta_min= 0;  % em radianos
  max_I=1;      %Numero de repetiçoes da simulação
 
  for I=0 : 1 : max_I;
      if (rem(I,2)==0)
          for theta = theta_min:0.005: theta_max;
-              %th_tilt = plot4bar(param, theta,I,theta_max,max_I); %%Plota a
+              th_tilt = plot4bar(param, theta,I,theta_max,max_I); %%Plota a
               % simulacao do mecanismo de quatro barras
               th_tilt = sim4bar(param,theta);
               theta_servo = [theta_servo theta];
@@ -62,13 +62,28 @@
  %%Figura da relação entre o Angulo ThetaServo e o Angulo Tilt
  %Resultado Theta_tilt = -0.8649*Theta_servo-131.7590;
  
- procura=[34.08 30.3623 12.91 4.836]
+%  procura=[34.08 30.3623 12.91 4.836]
+%  
+
+
+figure
+plot([0:size(theta_servo,2)-1],rad2deg(theta_servo));
+xlabel('Tempo [s]')
+ylabel('\theta_{servo} [\circ]')
+grid on
  
- figure
- hold on
- for i=1:size(procura,2)
-    plot(0:180-1,ones(180)*(procura(i)),'r')
- end
+
+figure
+plot([0:size(theta_tilt,2)-1],rad2deg(theta_tilt));
+xlabel('Tempo [s]')
+ylabel('\theta_{tilt} [\circ]')
+grid on
+
+  figure
+%  hold on
+%  for i=1:size(procura,2)
+%     plot(0:180-1,ones(180)*(procura(i)),'r')
+%  end
  plot(rad2deg(theta_servo),rad2deg(theta_tilt));
  xlabel('\theta_{servo} [\circ]')
  ylabel('\theta_{tilt} [\circ]')
@@ -78,30 +93,30 @@
   
 %  coefs1 = polyfit( rad2deg(theta_servo(197:630)), rad2deg(theta_tilt(197:630)),1 )
  %coefs1 = polyfit( rad2deg(theta_servo), rad2deg(theta_tilt),1 )
- PPM2deg=90/1500;
- deg2PPM=2350/123.18;
- tservo=[67.8955 74.4845 99.9811 111.1538 123.18]
- ppm=[1650 1701 1950 2099 2350]
- coefs=polyfit(tservo,ppm,1)
- 
-
- for i=1:size(theta_servo,2)
-    y(i)=polyval(coefs,rad2deg(theta_servo(i)));
- end
- 
- 
- i=1
- Xini=[1600]
- Xfim=[2350]
- ndivx=[7]
- figure
- figura=gcf
- plot(y,rad2deg(theta_tilt));
- xlabel('PPM [ms]')
- axis([Xini(i) Xfim(i) -10 40])
- figura.Children.XTick= linspace(Xini(i), Xfim(i),ndivx(i))
- ylabel('\theta_{tilt} [\circ]')
- grid on
+%  PPM2deg=90/1500;
+%  deg2PPM=2350/123.18;
+%  tservo=[67.8955 74.4845 99.9811 111.1538 123.18]
+%  ppm=[1650 1701 1950 2099 2350]
+%  coefs=polyfit(tservo,ppm,1)
+%  
+% 
+%  for i=1:size(theta_servo,2)
+%     y(i)=polyval(coefs,rad2deg(theta_servo(i)));
+%  end
+%  
+%  
+%  i=1
+%  Xini=[1600]
+%  Xfim=[2350]
+%  ndivx=[7]
+%  figure
+%  figura=gcf
+%  plot(y,rad2deg(theta_tilt));
+%  xlabel('PPM [ms]')
+%  axis([Xini(i) Xfim(i) -10 40])
+%  figura.Children.XTick= linspace(Xini(i), Xfim(i),ndivx(i))
+%  ylabel('\theta_{tilt} [\circ]')
+%  grid on
  
  
  

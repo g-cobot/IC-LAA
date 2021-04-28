@@ -11,12 +11,12 @@ function theta_tilt = plot4bar(parameters,theta_servo, I,theta_max,max_I)
     y = parameters(6);
     x = parameters(7);
    
-    alpha = asin(y/w);
+    alpha = asin(y/x);
     beta = (pi+alpha)-theta_servo;
 
-    ST = sqrt(s^2+w^2-2*s*w*cos(beta));
-    phi_1 = acos((ST^2+w^2-(s^2))/(2*ST*w));
-    phi_2 = acos((t^2+ST^2-(x^2))/(2*t*ST));
+    ST = sqrt(s^2+x^2-2*s*x*cos(beta));
+    phi_1 = acos((ST^2+x^2-(s^2))/(2*ST*x));
+    phi_2 = acos((t^2+ST^2-(w^2))/(2*t*ST));
     phi_3 = acos((t^2+v^2-(u^2))/(2*t*v));
 
     theta_tilt = pi - (phi_1 + phi_2 + phi_3 + alpha);

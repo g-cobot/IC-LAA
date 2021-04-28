@@ -1,4 +1,4 @@
-function theta_tilt = sim4bar(parameters, theta_servo)
+function theta_tilt = sim4bar1(parameters, theta_servo)
 
     s = parameters(1); 
     w = parameters(2);

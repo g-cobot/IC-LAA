@@ -9,14 +9,23 @@ clc
  %Definição das dimensoes de cada barra do mecanismo
  %Tilt motor 1 M1 valores em metros 
  
- s1 = 1.6e-2;
+ s1 = 2.0e-2;%1.6e-2;
  w1 = 3.8e-2;
  u1 = 1.8e-2;
  v1 = 1.25e-2;
  t1 = sqrt(u1^2+v1^2);
- y1 = 1.95e-2;
+ y1 = 1.773e-2;%1.95e-2;
  st1 = sqrt(w1^2+t1^2);
  x1 = sqrt(st1^2-s1^2);
+ 
+%  s1 = 1.6e-2;
+%  w1 = 3.8e-2;
+%  u1 = 1.8e-2;
+%  v1 = 1.25e-2;
+%  t1 = sqrt(u1^2+v1^2);
+%  y1 = 1.95e-2;
+%  st1 = sqrt(w1^2+t1^2);
+%  x1 = sqrt(st1^2-s1^2);
  param=[s1 w1 u1 v1 t1 y1 x1]*1000;
  %Tilt motor 2 M2
  s2 = 1.6e-2;
@@ -31,10 +40,13 @@ clc
  param2=[s2 w2 u2 v2 t2 y2 x2]*1000;
  
  % Definição dos Angulos Limites do Servo Motor [theta_min,theta_max] (Atuador do mecanismo Tilt)
- theta_max= pi; % em radianos pi[rad] = 180 [degrees]
- theta_min= 0;  % em radianos
  
- for theta = theta_min:0.005: theta_max;
+ theta_max=pi;% pi/4; % em radianos pi[rad] = 180 [degrees]
+ theta_min=1.221730476396031;%0;  % em radianos
+ %theta_max= pi/2; % em radianos pi[rad] = 180 [degrees]
+ %theta_min= 0.366519142918809;  % em radianos
+ 
+ for theta = theta_min:0.00005: theta_max;
       th_tilt = sim4bar(param2,theta);
       theta_servo = [theta_servo theta];
       theta_tilt=[theta_tilt th_tilt];
@@ -54,11 +66,12 @@ ppm=[1650:50:1900,2000:50:2350]
  xlabel('\theta_{servo} [\circ]')
  ylabel('\theta_{tilt} [\circ]')
  grid on
-tservo2=[67.3225 73.3386 80.2141 84.7978 89.6679 93.9651 103.9918 107.4296 111.1538 114.0186 117.4563 119.4619 121.7535 122.8994]
-
+%tservo2=[67.3225 73.3386 80.2141 84.7978 89.6679 93.9651 103.9918 107.4296 111.1538 114.0186 117.4563 119.4619 121.7535 122.8994]
+tservo2=[92.3454 97.2155 102.9451 107.2423 111.5394 115.8366 125.6571 129.1178 133.0741 136.4115 140.3191 142.3904 145.1807 146.636]
 
 PPM2deg=90/1500;
-deg2PPM=2350/123.18;
+%deg2PPM=2350/123.18;
+deg2PPM=2350/146.636;
 % tservo=[67.8955 74.4845 99.9811 111.1538 123.18]
 coefs=polyfit(tservo2,ppm,1)
  
