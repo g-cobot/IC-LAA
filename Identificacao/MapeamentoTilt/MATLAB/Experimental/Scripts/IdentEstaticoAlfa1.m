@@ -90,5 +90,5 @@ grid on
 % plot(pwm1,polyval(coefs,pwm1));
 % 
 % leg1=legend('Dados experimentais')
-% set(leg1,'Interpreter','latex')
+% set(leg1,
 % grid on

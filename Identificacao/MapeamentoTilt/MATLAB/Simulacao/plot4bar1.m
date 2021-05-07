@@ -1,7 +1,7 @@
 function theta_tilt = plot4bar1(parameters,theta_servo, I,theta_max,max_I)
-    clear plot;
+    %clear plot;
     %clear lines;
-    subplot(2,1,1)
+    %subplot(2,1,1)
     
     s = parameters(1); 
     w = parameters(2);
@@ -88,18 +88,18 @@ function theta_tilt = plot4bar1(parameters,theta_servo, I,theta_max,max_I)
     xlabel('x [mm]')
     ylabel('y [mm]')
     pause(0.005);
-    if ( (I ~= max_I) || (theta_servo <(theta_max-0.005)) )
-        delete(O1_circle);
-        delete(O2_circle);
-        delete(T_circle);
-        delete(U_circle);
-        delete(S_circle);
-        
-        delete(T_bar);
-        delete(U_bar);
-        delete(V_bar);
-        delete(S_bar);
-        delete(W_bar);
-        delete(X_bar);
-    end
+%     if ( (I ~= max_I) || (theta_servo <(theta_max-0.005)) )
+%         delete(O1_circle);
+%         delete(O2_circle);
+%         delete(T_circle);
+%         delete(U_circle);
+%         delete(S_circle);
+%         
+%         delete(T_bar);
+%         delete(U_bar);
+%         delete(V_bar);
+%         delete(S_bar);
+%         delete(W_bar);
+%         delete(X_bar);
+%     end
 end
