@@ -17,13 +17,13 @@ alpha=[];
 %y = 1.95e-2;
 %x = 4.535e-2;
 
-s = 1.59e-2;
-w = 3.844e-2;
-u = 1.5e-2;
-v = 1.43e-2;
+s = 1.30e-2;%1.59e-2;
+w = 3.85e-2;%3.844e-2;
+u = 1.8e-2;
+v = 1.6e-2;%1.35e-2;%1.6e-2;
 t = sqrt(u^2+v^2);
-y = 1.790e-2;
-x = 4.504e-2;
+y = 1.790e-2;%1.790e-2;
+x = 4.10e-2;%4.20e-2;%4.504e-2;
 
 param1=[s w u v t y x]*1000;
 
@@ -66,9 +66,10 @@ ppm2servo=polyfit(ppmin,servo,1);
 
 
 figure
-plot(ppm,tservo2,'r*');
-hold on
+%plot(ppm,tservo2,'r*');
+%hold on
 plot(ppmin, servo,'k*');
+hold on
 plot(ppmin,polyval(ppm2servo,ppmin));
 legend={'Simulado','Experimental'}
 xlabel('PPM [ms]')
@@ -95,31 +96,61 @@ figura.Children.XTick= linspace(Xini(i), Xfim(i),ndivx(i))
 ylabel('\theta_{tilt} [\circ]')
 grid on
 
+
+figure
+load('PPMAlfa.mat'); %Carrega dados
+ppmAlfa=polyfit(dados(:,1),dados(:,2),1)
+plot(dados(:,1),dados(:,2),'r*');
+grid on
+hold on
+x=[min(dados(:,1)):0.1:max(dados(:,1))];
+y= polyval(ppmAlfa,x);
+plot(x,y)
+title("PPM x \alpha");
+xlabel("PPM [ms]",'Interpreter','latex');
+ylabel("$\alpha [^\circ]$",'Interpreter','latex');
+%axis([53 180 -5 91])
+
+
 figure
 plot(rad2deg(theta_servo),rad2deg(alpha));
 title("\theta_{servo}x\alpha");
 xlabel("$\theta_{servo} [^\circ]$",'Interpreter','latex');
 ylabel("$\alpha [^\circ]$",'Interpreter','latex');
-axis([53 180 -5 91])
+axis([0 180 -5 100])
 grid on
 hold on
-%====================
-offset=  80.5; % Para qual valor de angulo de thetapot temos o angulo
-%zero do tilt 2
-
-load('dado_1_tilt2.mat');
-load('dado_2_tilt2.mat');
-load('dado_3_tilt2.mat');
-
-dado_final=[dado1(:,1:13); dado2(:,1:13); dado3(:,1:13)];
-dado_final=dado_final-offset*ones(size(dado_final));
-thetaservo=polyval(ppm2servo,[1200:50:2250]*1000);
-alfa=[82.19 75.5 68.61 61.56 58.65 53 48 44 38.6 mean(dado_final)];
-plot(thetaservo,alfa,'*');
-hold on
-format long
-servo2alfa = polyfit(thetaservo,alfa,2);
-plot([54:1:175],polyval(servo2alfa,[54:1:175],'r--'));
+% %====================
+% offset=  78.67; % Para qual valor de angulo de thetapot temos o angulo
+% %zero do tilt 2
+% 
+% load('dado_1_tilt2.mat');
+% load('dado_2_tilt2.mat');
+% load('dado_3_tilt2.mat');
+% 
+% dado_final=[dado1(:,1:13); dado2(:,1:13); dado3(:,1:13)];
+% dado_final=dado_final-offset*ones(size(dado_final));
+% thetaservo=polyval(ppm2servo,[1200:50:2250]*1000);
+% alfa=[82.19 75.5 68.61 61.56 58.65 53 48 44 38.6 mean(dado_final)];
+% plot(thetaservo,alfa,'g*');
+% hold on
+% format long
+% servo2alfa = polyfit(thetaservo,alfa,2);
+% plot([54:1:175],polyval(servo2alfa,[54:1:175],'r--'));
 clear legend
 legend('Simulação','Dados experimentais','Curva Ajustada','Interpreter','latex')
 
+global Ts;
+global numValues;
+Ts=1.5;
+numValues=1;
+
+%txtfile= dlmread('primeiros.txt');
+txtfile= dlmread('Dados2.txt');
+data = iddata([txtfile(:,3) polyval(ppmAlfa,txtfile(:,3))],[txtfile(:,1) txtfile(:,5) txtfile(:,4)],Ts,'ExperimentName','Identificacao do tilt');
+data.OutputName = {'ADC','Alfa'};
+data.OutputUnit = {'0-1023','degrees'};
+data.InputName = {'Time','ThetaServo','PPM'};
+data.InputUnit = {'seconds','degrees','milliseconds'};
+
+plot(data.u(:,2),data.y(:,2),'r*')
